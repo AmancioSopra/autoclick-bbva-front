@@ -1,0 +1,39 @@
+<div class="container">
+ 
+    <h4 id="titleForm" class="pb-0 text-center mt-3">Crear Usuario</h4>
+  
+    <form id="loginForm" [formGroup]='loginForm' (ngSubmit)="onSubmit()" class="p-0">
+      <div id="containerMobile" class="">
+        <div class="row ps-4 pe-4">
+          <div class="inputTextContainer mb-2">
+            <input type="text" placeholder=" " name="username" formControlName="username" required username minlength="5">
+            <span></span>
+            <div class="labelForm">
+              <i class="fa-solid fa-user me-3"></i>
+              <label>Nombre de usuario</label>
+            </div>
+          </div>
+        </div>
+  
+        <div class="alert alert-danger d-flex align-items-center pt-4 pb-4" *ngIf="userNameValidator(false)">
+          <i class="fa-solid fa-xmark ps-1 "></i>
+          <span class="ms-1">El nombre de usuario debe de tener más de 5 carácteres</span>
+        </div>
+        <div class="alert alert-success  d-flex align-items-center" *ngIf="userNameValidator(true)">
+          <i class="fa-solid fa-check ps-1"></i>
+          <span class="ms-1"> Nombre correcto</span>
+        </div>
+        
+  
+        
+  
+       
+      </div>
+  
+      <div class="d-flex justify-content-center align-items-center">
+        <input id="submitBtn" type="submit" 
+          class="btn btn-outline-primary btn--rounded fw-bold col-5 mb-3 pt-2 pb-2">
+      </div>
+  
+    </form>
+  </div>
