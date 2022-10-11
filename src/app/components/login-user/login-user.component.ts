@@ -58,7 +58,7 @@ export class LoginUserComponent implements OnInit {
      
     });
   }
-
+  
   private setLocalStorage() {
     const user:any = {
       name:  this.loginForm.value['username'],
@@ -66,14 +66,13 @@ export class LoginUserComponent implements OnInit {
       autoClickers: 10
     }
 
-    // const users: any= localStorage.getItem('users');
     let usersStorage:any[] = JSON.parse(localStorage.getItem('users') || "[]" );
     
     let users: any[] = [];
     
     if(usersStorage.length == 0){
       usersStorage.push(user);
-      localStorage.setItem('users', JSON.stringify(users))
+      localStorage.setItem('users', JSON.stringify(usersStorage))
       localStorage.setItem('currentUser', user.name);
     }
     else{

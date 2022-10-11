@@ -1,16 +1,31 @@
-<div class="container">
-    <h4> Hola {{username}}</h4>
-    <h3> Tienes {{clickCounter}} clics</h3>
-    <h3> AutoClicks: {{autoClics}}</h3>
-    <div class="d-flex flex-column">
-        <button type="button" class="btn btn-primary" (click)="sumaClic()">Hazme clic</button>
+<div class="container-fluid ps-0 pe-0">
+
     
-        <button type="button" class="btn btn-primary" (click)="compraAutoClic()" [disabled]="canBuy"> Compra Autoclickers({{autoClickerCost}}) </button>
+        <div class=" header d-flex justify-content-between align-items-center ps-3 pe-3 pt-1 pb-1">
+            <h4 class="text-center"> Hola {{username}}</h4>  
+            <button type="button" class="btn btn-primary" (click)="navigateBack()">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+            </button>
+        </div>
+        
+    
+    
+    
+    <div class="d-flex flex-column align-items-center mt-4">
+       
+        <h3> Tienes {{clickCount}} clics</h3>
+        <h3> AutoClicks: {{autoClickers}}</h3>
+        <div class="d-flex flex-column">
+            <button type="button" class="btn btn-primary" (click)="sumaClic()">Hazme clic</button>
+        
+            <button type="button" class="btn btn-secondary" (click)="compraAutoClic()" [disabled]="canBuyDisabled" > Compra Autoclickers({{autoClickerCost}}) </button>
+        </div>
+        
+        
+        
+        <span>{{messageAutoClicker}} ({{autoClickerCost}})</span>
     </div>
     
-    {{messageAutoClicker}}
-    
-    <span>AutoClickerCost {{autoClickerCost}}</span>
 </div>
 
 
