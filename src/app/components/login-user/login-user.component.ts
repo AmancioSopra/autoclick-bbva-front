@@ -1,6 +1,7 @@
 import { IfStmt } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginUserComponent implements OnInit {
   loginForm: FormGroup;
   public imgAvatarPath: string = '../assets/images/logo.jpg';
 
-  constructor(
+  constructor(private router: Router,
     private readonly formBuilder: FormBuilder,
   ) {
     this.loginForm = new FormGroup({
@@ -37,17 +38,18 @@ export class LoginUserComponent implements OnInit {
 
   
   onSubmit() {
+    console.log("OnSubmit");
     if (this.loginForm.status == 'INVALID') {
       alert('El formulario está mal cumplimentado');
     } else {
       
-      alert('OK');
       this.setLocalStorage();
+      this.router.navigate(['/game']);
     }
+    
   }
   private initForm() {
-    const regExpEmail = `^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$`;
-
+    
     return this.formBuilder.group({
       username: [
         '',,

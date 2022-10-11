@@ -6,9 +6,11 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 
 
 const routes:Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomePageComponent},
- {path: 'game', component: GamePageComponent}
+  {path: 'game', component: GamePageComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '**', redirectTo: 'home', pathMatch: 'full'},
+ 
  ];
 
 @NgModule({
