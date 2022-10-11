@@ -7,12 +7,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginUserComponent } from './login-user/login-user.component';
+import { LoginUserComponent } from './components/login-user/login-user.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { GamePageComponent } from './pages/game-page/game-page.component';
+import { GameComponent } from './components/game/game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-   LoginUserComponent
+   LoginUserComponent,
+   HomePageComponent,
+   GamePageComponent,
+   GameComponent
   ],
   imports: [
     BrowserModule,

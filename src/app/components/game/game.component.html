@@ -1,2 +1,12 @@
 <h4> Hola {{username}}</h4>
 <h3> Tienes {{clickCounter}} clics</h3>
+<h3> AutoClicks: {{autoClics}}</h3>
+<div class="d-flex flex-column">
+    <button type="button" class="btn btn-primary" (click)="sumaClic()">Hazme clic</button>
+
+    <button type="button" class="btn btn-primary" (click)="compraAutoClic()" [disabled]="canBuy"> Compra Autoclickers({{autoClickerCost}}) </button>
+</div>
+
+{{messageAutoClicker}}
+
+<span>AutoClickerCost {{autoClickerCost}}</span>

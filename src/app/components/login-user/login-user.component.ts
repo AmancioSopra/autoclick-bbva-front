@@ -60,7 +60,8 @@ export class LoginUserComponent implements OnInit {
   private setLocalStorage() {
     const user:any = {
       name:  this.loginForm.value['username'],
-      clickCount: 0
+      clickCount: 20,
+      autoClickers: 10
     }
 
     // const users: any= localStorage.getItem('users');
