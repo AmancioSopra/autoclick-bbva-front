@@ -62,8 +62,8 @@ export class LoginUserComponent implements OnInit {
   private setLocalStorage() {
     const user:any = {
       name:  this.loginForm.value['username'],
-      clickCount: 20,
-      autoClickers: 10
+      clickCount: 0,
+      autoClickers: 0
     }
 
     let usersStorage:any[] = JSON.parse(localStorage.getItem('users') || "[]" );
