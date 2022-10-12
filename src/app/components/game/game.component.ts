@@ -5,122 +5,114 @@ import { interval, Observable, Subscription, takeWhile } from 'rxjs';
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
   AUTOCLICKER_BASE_COST = 2;
   CLICS_BEFORE_SHOW_AUTOCLICKER_BUTTON = 4;
 
-  username:any = '';
-  clickCount:number = 0;
+  username: any = '';
+  clickCount: number = 0;
   autoClickers = 0;
   autoClickerBaseCost = this.AUTOCLICKER_BASE_COST;
-  messageAutoClicker = "";
-  canBuyDisabled:boolean = true;
+  messageAutoClicker = '';
+  canBuyDisabled: boolean = true;
   autoClickerCost = 0;
-  timer$:Observable<any>;
-  timerSubscriptions:Subscription[] = [];
+  timer$: Observable<any>;
+  timerSubscriptions: Subscription[] = [];
 
-  constructor(private router:Router) { 
-      this.timer$ = interval(1000)
-      .pipe(takeWhile(()=> true));
+  constructor(private router: Router) {
+    this.timer$ = interval(1000).pipe(takeWhile(() => true));
   }
   ngOnInit(): void {
-
-   
     this.getData();
     this.getAutoClickCost();
-    
 
-    if(this.autoClickers != 0){
-      for(let i = 0; i < this.autoClickers; i++){
-        this.timerSubscriptions.push((this.timer$.subscribe(()=> {
-          this.addClic()
-         })  ))
+    if (this.autoClickers != 0) {
+      for (let i = 0; i < this.autoClickers; i++) {
+        this.timerSubscriptions.push(
+          this.timer$.subscribe(() => {
+            this.addClic();
+          })
+        );
       }
-        
-     }
+    }
   }
- 
-  addClic(){
+
+  addClic() {
     this.clickCount++;
     this.setLocalStorage();
     this.getAutoClickCost();
-    this.canBuyDisabled = this.clickCount < this.autoClickerCost
-     ? true
-     : false
+    this.canBuyDisabled = this.clickCount < this.autoClickerCost ? true : false;
   }
 
-  
-
-  buyAutoClic(){
-   this.autoClickers++;
-   this.clickCount =  this.clickCount - this.autoClickerCost;
-   this.getAutoClickCost();
-   this.setLocalStorage();
-   this.startAutoClic();
+  buyAutoClic() {
+    this.autoClickers++;
+    this.clickCount = this.clickCount - this.autoClickerCost;
+    this.getAutoClickCost();
+    this.setLocalStorage();
+    this.startAutoClic();
   }
 
-  navigateBack(){
+  navigateBack() {
     this.router.navigate(['/home']);
   }
-  private getData(){
-    this.username =  localStorage.getItem('currentUser') || 'defaultUser';
-    let users: any[] = JSON.parse(localStorage.getItem('users') || "[]" );
-    
-    let currentUser = users.find(x => x.name == this.username);
+  private getData() {
+    this.username = localStorage.getItem('currentUser') || 'defaultUser';
+    let users: any[] = JSON.parse(localStorage.getItem('users') || '[]');
+
+    let currentUser = users.find((x) => x.name == this.username);
     this.clickCount = currentUser.clickCount;
     this.autoClickers = currentUser.autoClickers;
   }
   private calculateAutoClickerCost() {
-  return this.autoClickerBaseCost + this.autoClickerBaseCost * this.autoClickers;
+    return (
+      this.autoClickerBaseCost + this.autoClickerBaseCost * this.autoClickers
+    );
   }
-  private getAutoClickCost(){
-    this.autoClickerCost =  this.calculateAutoClickerCost();
+  private getAutoClickCost() {
+    this.autoClickerCost = this.calculateAutoClickerCost();
 
-    if(this.clickCount <= this.CLICS_BEFORE_SHOW_AUTOCLICKER_BUTTON){
+    if (this.clickCount <= this.CLICS_BEFORE_SHOW_AUTOCLICKER_BUTTON) {
       this.canBuyDisabled = true;
       return;
     }
 
-    if(this.autoClickerCost > this.clickCount){
-      this.messageAutoClicker = `Necesitas ${this.autoClickerCost - this.clickCount} clics para comprar SUPER clics`;
+    if (this.autoClickerCost > this.clickCount) {
+      this.messageAutoClicker = `Necesitas ${
+        this.autoClickerCost - this.clickCount
+      } clics para comprar SUPER clics`;
       this.canBuyDisabled = true;
-      
-    }
-    else{
+    } else {
       this.canBuyDisabled = false;
-      this.messageAutoClicker = `Puedes comprar ${Math.floor(this.clickCount / this.autoClickerCost)} SUPER clics`;
+      this.messageAutoClicker = `Puedes comprar ${Math.floor(
+        this.clickCount / this.autoClickerCost
+      )} SUPER clics`;
     }
-    
   }
 
-  private startAutoClic(){
-    
-    this.timerSubscriptions.push(this.timer$.subscribe(()=> {
-      this.addClic();
-     })  )
+  private startAutoClic() {
+    this.timerSubscriptions.push(
+      this.timer$.subscribe(() => {
+        this.addClic();
+      })
+    );
   }
-  
-  
-  private setLocalStorage(){
-    let users: any[] = JSON.parse(localStorage.getItem('users') || "[]" );
-    let userFounded = users.findIndex(x=> this.username == x.name);
-    if(userFounded != -1){
+
+  private setLocalStorage() {
+    let users: any[] = JSON.parse(localStorage.getItem('users') || '[]');
+    let userFounded = users.findIndex((x) => this.username == x.name);
+    if (userFounded != -1) {
       users[userFounded].clickCount = this.clickCount;
       users[userFounded].autoClickers = this.autoClickers;
     }
-    
-    localStorage.setItem('users', JSON.stringify(users));
-}
 
-  
-  ngOnDestroy(){
-    this.timerSubscriptions.forEach(sub => {
-      sub.unsubscribe();
-    })
-    
+    localStorage.setItem('users', JSON.stringify(users));
   }
 
-
+  ngOnDestroy() {
+    this.timerSubscriptions.forEach((sub) => {
+      sub.unsubscribe();
+    });
+  }
 }
