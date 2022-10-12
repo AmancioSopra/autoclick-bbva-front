@@ -37,7 +37,6 @@ export class LoginUserComponent implements OnInit {
 
   
   onSubmit() {
-    console.log("OnSubmit");
     if (this.loginForm.status == 'INVALID') {
       alert('El formulario está mal cumplimentado');
     } else {

@@ -21,11 +21,11 @@
         </div>
 
         <div class="d-flex flex-column mt-3">
-            <button type="button" class="btn btn-primary" (click)="sumaClic()">
+            <button id="clicBtn" type="button" class="btn btn-primary" (click)="addClic()">
                 <i class="fas fa-mouse  color--white ms-1"></i> Clic
             </button>
 
-            <button type="button" class="btn btn-secondary" (click)="compraAutoClic()" [disabled]="canBuyDisabled" [ngStyle]="{'visibility': clickCount >= 5 ? 'visible' : 'hidden'}">
+            <button id="autoClicBtn" type="button" class="btn btn-secondary" (click)="buyAutoClic()" [disabled]="canBuyDisabled" [ngStyle]="{'visibility': clickCount >= 5 ? 'visible' : 'hidden'}">
                 <i class="fa-solid fa-wand-magic-sparkles color--white me-1"></i> <span>Buy auto clic
                     ({{autoClickerCost}}<i class="fas fa-mouse"></i>)</span></button>
         </div>

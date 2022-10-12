@@ -69,7 +69,9 @@ describe('LoginUserComponent', () => {
       inputName.setValue("");
       expect(form.invalid).toBe(true);
       inputName.setValue("hola");
+
       expect(form.invalid).toBe(true);
+
   })
   
   it('should show alert message when form submited is invalid', () => {
