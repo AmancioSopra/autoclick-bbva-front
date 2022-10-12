@@ -19,8 +19,37 @@ export class GameComponent implements OnInit {
   timerSubscriptions:Subscription[] = [];
 
   constructor(private router:Router) { 
+    this.username = '';
+    this.clickCount= 0;
+    this.autoClickers = 0;
+    this.autoClickerBaseCost = 2;
+    this.messageAutoClicker = "";
+    this.canBuyDisabled = true;
+    this.autoClickerCost = 0;
+    this.timerSubscriptions = [];
       this.timer$ = interval(1000)
       .pipe(takeWhile(()=> true));
+  }
+  ngOnInit(): void {
+    console.log("ONINIT");
+    this.username =  localStorage.getItem('currentUser');
+    this.clickCount = 6;
+    let users: any[] = JSON.parse(localStorage.getItem('users') || "[]" );
+
+    let currentUser = users.find(x => x.name == this.username)
+    this.clickCount = currentUser.clickCount;
+    this.autoClickers = currentUser.autoClickers;
+    this.getAutoClickCost();
+    if(currentUser.autoClickers != 0){
+      for(let i = 0; i < currentUser.autoClickers; i++){
+        this.timerSubscriptions.push((this.timer$.subscribe(()=> {
+          this.clickCount++;
+             this.getAutoClickCost();
+             this.setLocalStorage();
+         })  ))
+      }
+        
+     }
   }
 
   calculateAutoClickerCost() {
@@ -41,29 +70,7 @@ export class GameComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  console.log("ONINIT");
-   this.username =  localStorage.getItem('currentUser');
-
-   let users: any[] = JSON.parse(localStorage.getItem('users') || "[]" );
-   let currentUser = users.find(x=> this.username == x.name);
-
-   this.clickCount = currentUser.clickCount;
-   this.autoClickers = currentUser.autoClickers;
-   
-   this.getAutoClickCost();
-   if(currentUser.autoClickers != 0){
-    console.log("ENTRA")
-    for(let i = 0; i < currentUser.autoClickers; i++){
-      this.timerSubscriptions.push((this.timer$.subscribe(()=> {
-        this.clickCount++;
-           this.getAutoClickCost();
-           this.setLocalStorage();
-       })  ))
-    }
-      
-   }
-}
+  
   
   sumaClic(){
     

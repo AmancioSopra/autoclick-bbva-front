@@ -1,4 +1,3 @@
-import { IfStmt } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -52,7 +51,7 @@ export class LoginUserComponent implements OnInit {
     
     return this.formBuilder.group({
       username: [
-        '',,
+        '',
         [Validators.required, Validators.minLength(5)]
       ],
      

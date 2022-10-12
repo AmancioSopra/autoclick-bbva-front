@@ -5,7 +5,7 @@ import { GamePageComponent } from './pages/game-page/game-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
 
-const routes:Routes = [
+export const routes:Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'game', component: GamePageComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
