@@ -16,7 +16,7 @@ export class GameComponent implements OnInit {
   canBuyDisabled:boolean = true;
   autoClickerCost = 0;
   timer$:Observable<any>;
-  subscriptions:Subscription[] = [];
+  timerSubscriptions:Subscription[] = [];
 
   constructor(private router:Router) { 
       this.timer$ = interval(1000)
@@ -30,7 +30,7 @@ export class GameComponent implements OnInit {
     this.autoClickerCost =  this.calculateAutoClickerCost();
 
     if(this.autoClickerCost > this.clickCount){
-      this.messageAutoClicker = `Necesitas ${this.autoClickerCost - this.clickCount} clics para comprar`;
+      this.messageAutoClicker = `Necesitas ${this.autoClickerCost - this.clickCount} clics para comprar SUPER clics`;
       this.canBuyDisabled = true;
     }
     else{
@@ -52,8 +52,15 @@ export class GameComponent implements OnInit {
    this.autoClickers = currentUser.autoClickers;
    
    this.getAutoClickCost();
-   if(currentUser.autoClickers){
-    
+   if(currentUser.autoClickers != 0){
+    console.log("ENTRA")
+    for(let i = 0; i < currentUser.autoClickers; i++){
+      this.timerSubscriptions.push((this.timer$.subscribe(()=> {
+        this.clickCount++;
+           this.getAutoClickCost();
+           this.setLocalStorage();
+       })  ))
+    }
       
    }
 }
@@ -63,30 +70,21 @@ export class GameComponent implements OnInit {
     this.clickCount++;
     this.setLocalStorage();
     this.getAutoClickCost();
-
-    if(this.clickCount > 5){
-      this.canBuyDisabled = false;
-
-      this.canBuyDisabled = this.clickCount < this.autoClickerCost
-      ? true
-      : false
-    }
-    else{
-      this.canBuyDisabled = true;
-    }
+    this.canBuyDisabled = this.clickCount < this.autoClickerCost
+     ? true
+     : false
+   
   }
   
   startAutoClic(){
     
-    this.subscriptions.push(this.timer$.subscribe(()=> {
+    this.timerSubscriptions.push(this.timer$.subscribe(()=> {
       this.clickCount++;
          this.getAutoClickCost();
          this.setLocalStorage();
      })  )
-
   }
   
-
   compraAutoClic(){
    this.autoClickers++;
    this.clickCount =  this.clickCount - this.autoClickerCost;
@@ -103,18 +101,15 @@ export class GameComponent implements OnInit {
       users[userFounded].autoClickers = this.autoClickers;
     }
     
-
     localStorage.setItem('users', JSON.stringify(users));
-
-
-  }
+}
 
   navigateBack(){
     this.router.navigate(['/home']);
   }
   ngOnDestroy(){
     console.log("OnDESTROY")
-    this.subscriptions.forEach(sub => {
+    this.timerSubscriptions.forEach(sub => {
       sub.unsubscribe();
     })
     

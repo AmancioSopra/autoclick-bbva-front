@@ -1,11 +1,12 @@
-h4,h3,span{
+.color--white{
     color: white;
 }
-
-
-    .header{
+.marker{
+    font-size: 1.5rem;
+}
+.header{
         background-color: rgb(62, 59, 59);
-    }
+}
 
 .container{
         // left: 50%;
@@ -13,3 +14,4 @@ h4,h3,span{
         background-color: yellow;
        
 }
+
