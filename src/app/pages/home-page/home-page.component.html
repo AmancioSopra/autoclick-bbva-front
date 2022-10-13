@@ -1,1 +1,14 @@
-<app-login-user> </app-login-user>
+<div class="container mb-5 d-flex flex-column">
+    <div>
+        <app-login-user [ngStyle]="{'display': !rankingShowed  ? 'block' : 'none'}"> </app-login-user>
+    </div>
+    <div class="d-flex align-items-center justify-content-center mt-5 ms-3">
+        <button type="button" class="btn btn-light" (click)="showRanking()">
+            {{btnLabel}}
+        </button>
+
+        <app-ranking [ngStyle]="{'display': rankingShowed  ? 'block' : 'none'}">
+        </app-ranking>
+
+    </div>
+</div>

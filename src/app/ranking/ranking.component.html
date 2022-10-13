@@ -1,0 +1,20 @@
+<div class="container d-flex flex-column align-items-center justify-content-center">
+    <h4 class="title--h4">Ranking</h4>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"> Posición</th>
+                <th scope="col"> Nombre</th>
+                <th scope="col"> Clics </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <tr *ngFor=" let user of users; let i = index">
+                <td>{{i+1}}º</td>
+                <td>{{user.name}}</td>
+                <td>{{user.clickCount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

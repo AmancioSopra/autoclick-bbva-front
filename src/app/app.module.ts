@@ -11,6 +11,7 @@ import { LoginUserComponent } from './components/login-user/login-user.component
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { GamePageComponent } from './pages/game-page/game-page.component';
 import { GameComponent } from './components/game/game.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GameComponent } from './components/game/game.component';
    LoginUserComponent,
    HomePageComponent,
    GamePageComponent,
-   GameComponent
+   GameComponent,
+   RankingComponent
   ],
   imports: [
     BrowserModule,

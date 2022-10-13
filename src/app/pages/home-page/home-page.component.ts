@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-
+  rankingShowed = false;
+  btnLabel = "Ver ranking"
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
+   showRanking(){
+    this.rankingShowed = !this.rankingShowed
+    this.btnLabel = !this.rankingShowed ? "Ver ranking" : "Atrás";
+  }
 }
