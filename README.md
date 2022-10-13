@@ -50,9 +50,4 @@ Se adjunta captura de Lightouse para comprobar que es PWA
 ## Testing
 Se adjunta captura de la cobertura de los tests ejecutando el comando ```ng test --no-watch --code-coverage```
 
-![image](https://user-images.githubusercontent.com/91079719/195603153-d301bd08-62fb-4df0-83e2-9b07c1df51e0.png)
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/91079719/195620574-5ba3a46e-0fff-4969-9a7f-a7b07c5524d2.png)
