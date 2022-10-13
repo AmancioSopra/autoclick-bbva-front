@@ -1,12 +1,16 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { httpTranslateLoader } from 'src/app/app.module';
 
 import { LoginUserComponent } from './login-user.component';
 
 describe('LoginUserComponent', () => {
   let component: LoginUserComponent;
   let fixture: ComponentFixture<LoginUserComponent>;
+  let translate:any;
   const USER_DATA_MOCK =  {
     name: "Amancio",
     clickCount:5,
@@ -22,8 +26,20 @@ describe('LoginUserComponent', () => {
         RouterTestingModule,
         FormsModule,
         ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: httpTranslateLoader,
+            deps: [HttpClient],
+          },
+        }),
       ],
-      declarations: [ LoginUserComponent ]
+      declarations: [ LoginUserComponent ],
+      providers: [
+        TranslateService,
+        HttpClient,
+        HttpHandler,
+      ],
     })
     .compileComponents();
   });
@@ -79,7 +95,8 @@ describe('LoginUserComponent', () => {
       spyOn(window, 'alert');
       button.click();
 
-      expect(window.alert).toHaveBeenCalledWith('El formulario está mal cumplimentado');
+      expect(window.alert).toHaveBeenCalledWith("FORM NO OK");
+      
   })
 
   it('should save data in localStorage when form is OK', () => {

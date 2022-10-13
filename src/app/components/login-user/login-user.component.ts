@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-user',
@@ -15,6 +15,7 @@ export class LoginUserComponent implements OnInit {
 
   constructor(private router: Router,
     private readonly formBuilder: FormBuilder,
+    public translate: TranslateService,
   ) {
     this.loginForm = new FormGroup({
       username: new FormControl(''),
@@ -38,9 +39,9 @@ export class LoginUserComponent implements OnInit {
   
   onSubmit() {
     if (this.loginForm.status == 'INVALID') {
-      alert('El formulario está mal cumplimentado');
+      alert("FORM NO OK");
     } else {
-      
+    
       this.setLocalStorage();
       this.router.navigate(['/game']);
     }

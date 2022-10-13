@@ -3,9 +3,16 @@
         <app-login-user [ngStyle]="{'display': !rankingShowed  ? 'block' : 'none'}"> </app-login-user>
     </div>
     <div class="d-flex align-items-center justify-content-center mt-5 ms-3">
-        <button type="button" class="btn btn-light" (click)="showRanking()">
-            {{btnLabel}}
-        </button>
+        <div class="d-flex flex-column align-items-center justify-content-center pt-4">
+            <button id="rankingBtn" type="button" class="btn btn-light" (click)="showRanking()">
+                {{btnLabel | translate }}
+            </button>
+    
+            <button id="changeLangBtn"type="button" class="btn btn-secondary mt-3" (click)="changeLanguage()">
+                {{"pages.home.changeLang" | translate }}
+            </button>
+        </div>
+       
 
         <app-ranking [ngStyle]="{'display': rankingShowed  ? 'block' : 'none'}">
         </app-ranking>

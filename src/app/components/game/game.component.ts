@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval, Observable, Subscription, takeWhile } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-game',
@@ -21,7 +22,8 @@ export class GameComponent implements OnInit {
   timer$: Observable<any>;
   timerSubscriptions: Subscription[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+    public translate: TranslateService) {
     this.timer$ = interval(1000).pipe(takeWhile(() => true));
   }
   ngOnInit(): void {
@@ -79,17 +81,18 @@ export class GameComponent implements OnInit {
     }
 
     if (this.autoClickerCost > this.clickCount) {
-      this.messageAutoClicker = `Necesitas ${
-        this.autoClickerCost - this.clickCount
-      } clics para comprar SUPER clics`;
+      this.messageAutoClicker = this.translate.instant("pages.game.need-X-clicsToBuy", {clics:  this.autoClickerCost - this.clickCount});
       this.canBuyDisabled = true;
     } else {
       this.canBuyDisabled = false;
-      this.messageAutoClicker = `Puedes comprar ${Math.floor(
-        this.clickCount / this.autoClickerCost
-      )} SUPER clics`;
+      this.messageAutoClicker = this.translate.instant(
+        "pages.game.canBuy-X-autoClic"
+        ,{autoclics:Math.floor(
+        this.clickCount / this.autoClickerCost)}
+        )
+      }
     }
-  }
+  
 
   private startAutoClic() {
     this.timerSubscriptions.push(

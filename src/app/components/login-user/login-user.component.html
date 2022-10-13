@@ -1,6 +1,6 @@
 <div class="container">
  
-    <h4 id="titleForm" class="pb-0 text-center mt-3 title--h4">Crear Usuario</h4>
+    <h4 id="titleForm" class="pb-0 text-center mt-3 title--h4">{{"pages.home.loginTitle" | translate }}</h4>
   
     <form  id="loginForm" [formGroup]='loginForm' (ngSubmit)="onSubmit()" class="p-0">
       <div id="containerMobile" class="">
@@ -10,28 +10,24 @@
             <span></span>
             <div class="labelForm">
               <i class="fa-solid fa-user me-3"></i>
-              <label>Nombre de usuario</label>
+              <label>{{"pages.home.labelUser" | translate }}</label>
             </div>
           </div>
         </div>
   
         <div class="alert alert-danger d-flex align-items-center pt-4 pb-4" *ngIf="userNameValidator(false)">
           <i class="fa-solid fa-xmark ps-1 "></i>
-          <span class="ms-1">El nombre de usuario debe de tener más de 5 carácteres</span>
+          <span class="ms-1">{{"pages.home.userInvalid" | translate }}</span>
         </div>
         <div class="alert alert-success  d-flex align-items-center" *ngIf="userNameValidator(true)">
           <i class="fa-solid fa-check ps-1"></i>
-          <span class="ms-1"> Nombre correcto</span>
+          <span class="ms-1">{{"pages.home.userValid" | translate }}</span>
         </div>
         
-  
-        
-  
-       
       </div>
   
       <div class="d-flex justify-content-center align-items-center">
-        <input id="submitBtn" type="submit" 
+        <input id="submitBtn" type="submit" value="{{'pages.home.enter'| translate}}"
           class="btn btn-outline-primary btn--rounded fw-bold col-5 mb-3 pt-2 pb-2">
       </div>
   

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-ranking',
   templateUrl: './ranking.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RankingComponent implements OnInit {
   users:any[] = [];
-  constructor() { }
+  constructor(public translate: TranslateService) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -15,8 +15,9 @@ export class RankingComponent implements OnInit {
   
   private getUsers(){
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    console.log("Usuarios no ordenados", users);
-   
-    this.users = users.sort((a:any,b:any) => (a.clickCount < b.clickCount) ? 1 : -1)
+    if(users.length != 0)
+      this.users = users.sort((a:any,b:any) => (a.clickCount < b.clickCount) ? 1 : -1)
+    
+    
   }
 }
