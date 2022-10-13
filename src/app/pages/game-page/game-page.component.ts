@@ -17,7 +17,6 @@ export class GamePageComponent implements OnInit {
       this.translate.use('es');
       localStorage.setItem('lang', 'es');
     } else {
-      console.log('LANG', lang);
       this.translate.use(lang);
     }
   }
