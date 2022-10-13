@@ -10,7 +10,6 @@ import { LoginUserComponent } from './login-user.component';
 describe('LoginUserComponent', () => {
   let component: LoginUserComponent;
   let fixture: ComponentFixture<LoginUserComponent>;
-  let translate:any;
   const USER_DATA_MOCK =  {
     name: "Amancio",
     clickCount:5,
