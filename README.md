@@ -22,7 +22,7 @@ Instalación de http server:
   ```
   ## Alojamiento
   Esta aplicación está alojada en: 
-  https://autoclick-bbva-front-o2t33v6ep-amanciosopra.vercel.app/
+  https://autoclick-bbva-amancio.vercel.app/
   
   ## Funcionalidad
   La aplicación cuenta con dos vistas:
