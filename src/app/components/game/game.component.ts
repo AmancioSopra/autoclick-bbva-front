@@ -27,9 +27,18 @@ export class GameComponent implements OnInit {
     this.timer$ = interval(1000).pipe(takeWhile(() => true));
   }
   ngOnInit(): void {
+    if( !this.translate.currentLang){
+      this.translate.setDefaultLang('es');
+      this.translate.addLangs(['en', 'es']);
+      this.translate.use('es')
+    }
+    else{
+      this.translate.use(this.translate.currentLang)
+    }
+
     this.getData();
     this.getAutoClickCost();
-
+    
     if (this.autoClickers != 0) {
       for (let i = 0; i < this.autoClickers; i++) {
         this.timerSubscriptions.push(
