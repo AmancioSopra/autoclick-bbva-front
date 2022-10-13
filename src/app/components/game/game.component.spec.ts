@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Console } from 'console';
-import { routes } from 'src/app/app-routing.module';
-
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { httpTranslateLoader } from 'src/app/app.module';
 import { GameComponent } from './game.component';
 
 describe('GameComponent 1', () => {
@@ -21,8 +20,21 @@ describe('GameComponent 1', () => {
       
       
     await TestBed.configureTestingModule({
-      imports:[RouterTestingModule],
-      declarations: [ GameComponent ]
+      imports:[RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: httpTranslateLoader,
+            deps: [HttpClient],
+          },
+        }),],
+      declarations: [ GameComponent ],
+      providers: [
+        TranslateService,
+        HttpClient,
+        HttpHandler,
+      ]
+      
     })
     .compileComponents();
     let store:any = {};
@@ -74,10 +86,8 @@ describe('GameComponent 1', () => {
     expect(clicCountBefore).toEqual(clicCountAfter -1);
     expect(component.canBuyDisabled).toBe(false);
   })
-
   
 });
-
 
 describe('GameComponent 2', () => {
   let component: GameComponent;
@@ -90,8 +100,20 @@ describe('GameComponent 2', () => {
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[RouterTestingModule],
-      declarations: [ GameComponent ]
+      imports:[RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: httpTranslateLoader,
+            deps: [HttpClient],
+          },
+        }),],
+      declarations: [ GameComponent ],
+      providers: [
+        TranslateService,
+        HttpClient,
+        HttpHandler,
+      ],
     })
     .compileComponents();
     let store:any = {};
@@ -129,8 +151,6 @@ describe('GameComponent 2', () => {
     
   });
 
-
-
   it('should add 1 autoclicker to the counter when the autoClickBtn is pressed', () => {
     const autoClickerBefore = component.autoClickers;
 
@@ -142,9 +162,7 @@ describe('GameComponent 2', () => {
 
     btnAutoClic.click();
     btnAutoClic.click();
-    console.log("AutoClickerCost", component.autoClickerCost);
 
-    console.log("Clics", component.clickCount)
     expect(component.canBuyDisabled).toBe(true);
   })
   

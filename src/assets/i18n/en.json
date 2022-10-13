@@ -1,0 +1,24 @@
+{
+  "pages": {
+    "home": {
+      "loginTitle": "Create User",
+      "labelUser": "Username",
+      "seeRanking": "See ranking",
+      "userInvalid": "Username must be longer than 5 characters",
+      "userValid": "Username is correct",
+      "back": "Back",
+      "noUsersRanking": "There's no users to do the ranking",
+      "position": "Position",
+      "player": "Player",
+      "clics": "Clics",
+      "changeLang": "Change language",
+      "enter": "Enter"
+    },
+    "game":{
+      "hello": "Hello {{user}}",
+      "buyAutoClic": "Buy auto clic",
+      "canBuy-X-autoClic": "You can buy {{autoclics}} autoclics",
+      "need-X-clicsToBuy": "You need {{clics}} clics to buy autoclics"
+    }
+  }
+}

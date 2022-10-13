@@ -1,0 +1,26 @@
+{
+    "pages":{
+        "home": {
+            "loginTitle": "Crear Usuario",
+            "labelUser": "Nombre de usuario",
+            "seeRanking": "Ver ranking",
+            "userInvalid": "El nombre de usuario debe de tener más de 5 carácteres",
+            "userValid": "Nombre de usuario correcto",
+            "back": "Atrás",
+            "noUsersRanking": "No hay usuarios para hacer el ranking",
+            "position": "Posición",
+            "player": "Jugador",
+            "clics": "Clics",
+            "changeLang": "Cambiar idioma",
+            "enter": "Entrar"
+        },
+        "game":{
+            "hello": "Hola {{user}}",
+            "buyAutoClic": "Comprar auto clic",
+            "canBuy-X-autoClic": "Puedes comprar {{autoclics}} autoclics",
+            "need-X-clicsToBuy": "Necesitas {{clics}} clics para comprar autoclics"
+          }
+    }
+  
+    
+}

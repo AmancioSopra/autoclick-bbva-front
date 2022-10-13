@@ -1,11 +1,11 @@
-<div class="container d-flex flex-column align-items-center justify-content-center" *ngIf="users.length != 0">
+<div class="container d-flex flex-column align-items-center justify-content-center text-center" *ngIf="users.length != 0">
     <h4 class="title--h4">Ranking</h4>
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
-                <th scope="col"> Posición</th>
-                <th scope="col"> Nombre</th>
-                <th scope="col"> Clics </th>
+                <th scope="col"> {{"pages.home.position" | translate}}</th>
+                <th scope="col"> {{"pages.home.player" | translate}}</th>
+                <th scope="col"> {{"pages.home.clics" | translate}} </th>
             </tr>
 
         </thead>
@@ -20,6 +20,6 @@
 </div>
 
 <div *ngIf="users.length == 0">
-    <h4 class="title--h4 ms-3" >No hay usuarios para hacer el ranking</h4>
+    <h4 class="title--h4 ms-3" >{{"pages.home.noUsersRanking" | translate}}</h4>
 
 </div>

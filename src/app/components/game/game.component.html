@@ -1,7 +1,7 @@
 <div class="container-fluid ps-0 pe-0">
 
     <div class=" header d-flex justify-content-between align-items-center ps-3 pe-3 pt-1 pb-1">
-        <h4 class="text-center color--white pt-2"> Hola, {{username}}</h4>
+        <h4 class="text-center color--white pt-2"> {{"pages.game.hello" | translate:{user:this.username} }}</h4>
         <button type="button" class="btn btn-primary" (click)="navigateBack()">
             <i class="fa fa-sign-out color--white" aria-hidden="true"></i>
         </button>
@@ -26,11 +26,11 @@
             </button>
 
             <button id="autoClicBtn" type="button" class="btn btn-secondary" (click)="buyAutoClic()" [disabled]="canBuyDisabled" [ngStyle]="{'visibility': clickCount > CLICS_BEFORE_SHOW_AUTOCLICKER_BUTTON  ? 'visible' : 'hidden'}">
-                <i class="fa-solid fa-wand-magic-sparkles color--white me-1"></i> <span>Buy auto clic
+                <i class="fa-solid fa-wand-magic-sparkles color--white me-1"></i> <span> {{"pages.game.buyAutoClic" | translate}}
                     ({{autoClickerCost}}<i class="fas fa-mouse"></i>)</span></button>
         </div>
 
-        <span class="mt-3" [ngStyle]="{'visibility': clickCount >= 5 ? 'visible' : 'hidden'}">{{messageAutoClicker}}</span>
+        <span class="mt-3" [ngStyle]="{'visibility': clickCount >= 5 ? 'visible' : 'hidden'}">{{messageAutoClicker }}</span>
     </div>
 
 </div>
