@@ -20,6 +20,9 @@ Instalación de http server:
   ```
   npm run start-pwa
   ```
+  ## Alojamiento
+  Esta aplicación está alojada en: 
+  https://autoclick-bbva-front-o2t33v6ep-amanciosopra.vercel.app/
   
   ## Funcionalidad
   La aplicación cuenta con dos vistas:
